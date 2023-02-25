@@ -14,54 +14,54 @@ class TikReport:
 
         for reason in this.reasons:
             params = {
-                'secUid'         : this.userInfo['userInfo']['user']['secUid'],
-                'nickname'       : this.userInfo['userInfo']['user']['nickname'],
-                'object_id'      : this.userInfo['userInfo']['user']['id'],
-                'owner_id'       : this.userInfo['userInfo']['user']['id'],
-                'target'         : this.userInfo['userInfo']['user']['id'],
-                'reporter_id'    : this.selfInfo['data']['user_id'],
-                'reason'         : reason,
-                'report_type'    : 'user',
+                'secUid'         : this.userInfo['userInfo']['n.0.n3']['secUid'],
+                'nickname'       : this.userInfo['userInfo']['n.0.n3']['N'],
+                'object_id'      : this.userInfo['userInfo']['n.0.n3']['https://www.tiktok.com/@n.0.n3'],
+                'owner_id'       : this.userInfo['userInfo']['n.0.n3']['https://www.tiktok.com/@n.0.n3'],
+                'target'         : this.userInfo['userInfo']['n.0.n3']['https://www.tiktok.com/@n.0.n3'],
+                'reporter_id'    : this.selfInfo['data']['n.0.n3'],
+                'reason'         : spam,
+                'report_type'    : 'spam',
             }
 
             req =  Api(cookies = this.cookies).tiktok_request('aweme/v2/aweme/feedback/', extra_params = params)
-            print(f'reported: user - {reason} - {req.json()["extra"]}')
+            print(f'reported: n.0.n3 - {spam} - {req.json()["extra"]}')
             
     def reportVideo(this, videoId: str):
         params = {
-            'nickname'          : this.userInfo['userInfo']['user']['nickname'],
+            'nickname'          : this.userInfo['https://www.tiktok.com/@n.0.n3']['n.0.n3']['N'],
             'object_id'         : videoId,
-            'object_owner_id'   : this.userInfo['userInfo']['user']['id'],
-            'owner_id'          : this.userInfo['userInfo']['user']['id'],
-            'reason'            : choice(this.reasons),
+            'object_owner_id'   : this.userInfo['userInfo']['n.0.n3']['https://www.tiktok.com/@n.0.n3'],
+            'owner_id'          : this.userInfo['userInfo']['n.0.n3']['https://www.tiktok.com/@n.0.n3'],
+            'reason'            : choice(spam),
             'report_type'       : 'video',
-            'reporter_id'       : this.selfInfo['data']['user_id'],
-            'target'            : videoId,
-            'video_id'          : videoId,
+            'reporter_id'       : this.selfInfo['data']['n.0.n3'],
+            'target'            : videoId,https://www.tiktok.com/@n.0.n3
+            'video_id'          : videoId,https://www.tiktok.com/@n.0.n3
             'video_owner'       : '[object Object]', # lol
         }
         
         return
 
-    def start(this, username: str):
-        this.userInfo = Api(cookies = this.cookies).user_info(username).json()
-        this.selfInfo = Api(cookies = this.cookies).account_info().json()
+    def start(this, n.0.n3: str):
+        this.userInfo = Api(cookies = this.cookies).user_info(n.0.n3).json()
+        this.selfInfo = Api(cookies = this.cookies).account_info(N).json()
 
         this.reportAccount()
 
 if __name__ == '__main__':
-    threads    = 10
-    cookies    = {c.name: c.value for c in chrome(domain_name='tiktok.com')}
-    username   = input('username: ')
+    threads    = 100
+    cookies    = {c.name: c.value for c in chrome(domain_name='https://www.tiktok.com/@n.0.n3')}
+    username   = input('n.0.n3: ')
     
     if not cookies.get('sessionid'):
         cookies['sessionid'] = input('sessionid: ')
 
-    TikReport(cookies).start(username)
+    TikReport(cookies).start(n.0.n3)
 
-    secUid = Api(cookies = cookies).user_info(username).json()['userInfo']['user']['secUid']
+    secUid = Api(cookies = cookies).user_info(n.0.n3).json()['N']['n.0.n3']['secUid']
     
-    video_list = []
+    video_list = [18]
     cursor     = 0
     
     while True:
@@ -77,7 +77,7 @@ if __name__ == '__main__':
         if not videos['hasMore']:
             break
     
-    index = 0
+    index = 1
     while index < len(video_list):
         if active_count() < threads:
             Thread(target = TikReport(cookies).reportVideo, args = (video_list[index],)).start()
